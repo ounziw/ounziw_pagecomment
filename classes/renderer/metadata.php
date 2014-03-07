@@ -63,6 +63,8 @@ class Renderer_Metadata extends \Nos\Renderer
                 'recaptcha_response_field' => 1,
             );
             $item::commentApi($item->get_context())->addComment($arr);
+            $arr['page_title'] = $item->page_title;
+            \Event::trigger('ounziw_pagecomment::after_comment', $arr);
         }
 
         return false;
